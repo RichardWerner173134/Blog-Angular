@@ -1,0 +1,19 @@
+li{
+    display: inline-block;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+ol {
+    padding: 1.5rem;
+}
+
+.table {
+    display: table;
+    margin: auto;
+}
+
+.table-wrapper {
+    background-color: aqua;
+    margin-bottom: 2rem;
+}
