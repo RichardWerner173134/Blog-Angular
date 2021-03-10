@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BeitragInterface, BeitragModel } from '../model/beitrag-model';
+import { BeitragService } from '../services/beitrag.service';
 
 @Component({
   selector: 'app-beitraege',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeitraegeComponent implements OnInit {
 
-  constructor() { }
+  beitraege: BeitragModel[] = [];
+
+  constructor(private beitragService: BeitragService) { }
 
   ngOnInit(): void {
+    this.beitragService.getBeitraege().subscribe(
+      response => {
+        this.beitraege = response;
+      }
+    );
   }
-
 }
