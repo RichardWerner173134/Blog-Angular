@@ -1,4 +1,8 @@
 <div>
     <app-header></app-header>
-    Hier befinden sich alle Beiträge
+    <div class="beitraege-wrapper">
+        <app-beitrag 
+        *ngFor="let beitrag of beitraege" 
+        [beitrag]='beitrag'></app-beitrag>
+    </div>
 </div>

@@ -1,0 +1,29 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.inputs{
+    border: 2px solid black;
+    margin: 2rem;
+}
+
+p{
+    margin: 2rem;
+}
+
+.content{
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#form{
+    border: 2px solid black;
+    margin: 2rem;
+    width: 100%;
+}
+
+.submitButton{
+    margin: 2rem;
+}
