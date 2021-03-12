@@ -17,11 +17,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'beiträge', component: BeitraegeComponent},
   { path: 'impressum', component: ImpressumComponent},
+  { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent}
 ];
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     ImpressumComponent,
     TodayComponent,
     BeitragComponent,
-    NewArticleComponent
+    NewArticleComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
