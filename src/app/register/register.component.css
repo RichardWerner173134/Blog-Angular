@@ -1,0 +1,10 @@
+.inputs{
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    border: 1px solid black;
+}
+
+button{
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}

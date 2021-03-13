@@ -18,12 +18,15 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'beiträge', component: BeitraegeComponent},
   { path: 'impressum', component: ImpressumComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '**', component: HomeComponent}
 ];
 
@@ -38,7 +41,9 @@ const appRoutes: Routes = [
     TodayComponent,
     BeitragComponent,
     NewArticleComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public boolean isPresent(User user){
+    public boolean isUserPresent(User user){
         return userRepository.findById(user.getUsername()).isPresent();
     }
 

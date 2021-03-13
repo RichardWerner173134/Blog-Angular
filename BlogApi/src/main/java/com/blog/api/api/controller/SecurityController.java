@@ -53,7 +53,7 @@ public class SecurityController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void register(@RequestBody User user) throws Exception {
-        if(!userService.isPresent(user)){
+        if(!userService.isUserPresent(user)){
             user.setAccountNonExpired(true);
             user.setAccountNonLocked(true);
             user.setCredentialsNonExpired(true);
