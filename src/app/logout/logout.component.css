@@ -1,0 +1,10 @@
+.button:hover {
+    cursor:grab;
+    color:rgb(255, 255, 255)
+}
+
+.button {
+    padding: 1rem 1rem 1rem 1rem;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

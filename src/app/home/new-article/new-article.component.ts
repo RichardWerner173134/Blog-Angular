@@ -29,7 +29,7 @@ export class NewArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = this.loginService.getUsername();
-    document.getElementById("form").style.minWidth=(window.innerWidth * 0.9).toString() + "px";
+    document.getElementById("form").style.minWidth=(window.innerWidth * 0.8).toString() + "px";
     this.beitrag.controls['author'].setValue(this.username);
     this.beitrag.controls['author'].disable();
   }

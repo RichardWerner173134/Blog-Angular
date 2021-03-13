@@ -1,5 +1,9 @@
-div{
+.home-wrapper{
     background-color:rgba(219, 168, 168, 0.3);
     height: 100%;
     width: 100%;
+}
+
+button{
+    margin: 0.5rem;
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-
+  
   private token: string;
   private username: string;
 
@@ -38,4 +38,10 @@ export class LoginService {
   public setUsername(username: string) {
     this.username = username;
   }
+
+  public logout() {
+    this.token = null;
+    this.username = null;
+  }
+
 }

@@ -3,5 +3,8 @@
         <li *ngFor='let item of items'>
             <app-header-item [value]='item'></app-header-item>
         </li>
+        <li *ngIf="authenticated">
+            <app-logout></app-logout>
+        </li>
     </ol>
 </div>
