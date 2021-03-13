@@ -1,4 +1,10 @@
 <div>
     <app-header></app-header>
-    <app-new-article></app-new-article>
+    <app-new-article *ngIf="authenticated"></app-new-article>
+    <div *ngIf="!authenticated">
+        <p>
+            Du bist nicht angemeldet. Bitte Melde dich an, um Beiträge zu posten.
+        </p>
+        <button mat-raised-button routerLink="/login">Login</button>
+    </div>
 </div>

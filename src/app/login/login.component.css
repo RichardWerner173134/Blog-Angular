@@ -1,0 +1,13 @@
+.inputs{
+    border: 2px solid black;
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;;
+}
+
+h1{
+    margin-left: 2rem;
+}
+
+.submitButton{
+    margin: 2rem;
+}
