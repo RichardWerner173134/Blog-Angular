@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         response => {
           this.loginService.setToken(response);
+          this.loginService.setUsername(username);
           this.router.navigate(
             ['/home']
           );
