@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   private token: string;
+  private username: string;
 
   constructor(private http: HttpClient) { }
 
@@ -28,5 +29,13 @@ export class LoginService {
 
   public getToken(): string {
     return this.token;
+  }
+
+  public getUsername(): string {
+    return this.username;
+  }
+
+  public setUsername(username: string) {
+    this.username = username;
   }
 }

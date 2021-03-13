@@ -19,15 +19,6 @@ import org.springframework.web.bind.annotation.*;
 public class BeitragController {
 
     @Autowired
-    private MyUserDetailsService myUserDetailsService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
     private BeitragService beitragService;
 
     @RequestMapping(value = "/beitraege", produces = "application/json", method = RequestMethod.GET)
@@ -46,25 +37,5 @@ public class BeitragController {
         }
     }
 
-    @PostMapping(value = "/authenticate")
-    @ResponseBody
-    public String authentiate(@RequestBody AuthenticationRequest request) throws Exception {
 
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.getUsername(),
-                            request.getPassword()
-                    )
-            );
-        } catch (BadCredentialsException e) {
-            throw new Exception("Incorrect Username and Password");
-        }
-
-        final UserDetails userdetails = myUserDetailsService.loadUserByUsername(request.getUsername());
-
-        final String jwt = jwtUtil.generateToken(userdetails);
-
-        return new Gson().toJson(jwt);
-    }
 }

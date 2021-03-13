@@ -22,45 +22,50 @@ import java.util.Arrays;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-  @Autowired
-  private MyUserDetailsService myUserDetailsService;
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
 
-  @Autowired
-  private JwtRequestFilter jwtRequestFilter;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http
-      .csrf().disable().cors().and()
-      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-      .and()
-      .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-      .authorizeRequests()
-      .antMatchers("/authenticate").permitAll()
-      .antMatchers("/beitraege").permitAll()
-      .antMatchers("/addBeitrag").authenticated();
-  }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable().cors().and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
+                .antMatchers("/authenticate").permitAll()
+                .antMatchers("/beitraege").permitAll()
+                .antMatchers("/addBeitrag").authenticated()
+                .antMatchers("/register").permitAll()
+                .antMatchers("/users").permitAll();
 
-  @Override
-  public void configure(WebSecurity web) throws Exception {
-    web.ignoring()
-            .antMatchers("/authenticate")
-            .antMatchers("/beitraege");
-  }
+        http.headers().frameOptions().disable();
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(myUserDetailsService);
-  }
+    }
 
-  @Bean
-  public PasswordEncoder getPasswordEncoder(){
-    return NoOpPasswordEncoder.getInstance();
-  }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers("/authenticate")
+                .antMatchers("/beitraege");
+    }
 
-  @Bean
-  @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
-    return super.authenticationManagerBean();
-  }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(myUserDetailsService);
+    }
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }

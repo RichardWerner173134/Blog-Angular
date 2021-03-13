@@ -67,7 +67,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         excludePaths.add("/beitraege");
         excludePaths.add("/h2-console");
         excludePaths.add("/authenticate");
+        excludePaths.add("/register");
+        excludePaths.add("/users");
         String path = request.getRequestURI();
+
         for (String s : excludePaths){
             if(path.startsWith(s)){
                 return true;
