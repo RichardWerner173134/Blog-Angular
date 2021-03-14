@@ -20,6 +20,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthorenComponent } from './authoren/authoren.component';
+import { MatTableModule } from '@angular/material/table';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
   { path: 'impressum', component: ImpressumComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'autoren', component: AuthorenComponent },
   { path: '**', component: HomeComponent}
 ];
 
@@ -43,7 +46,8 @@ const appRoutes: Routes = [
     NewArticleComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    AuthorenComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

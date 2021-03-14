@@ -13,7 +13,8 @@ export class HeaderComponent implements OnInit {
   items: any[] = [
     'Home',
     'Beiträge',
-    'Impressum'
+    'Impressum',
+    'Autoren'
   ];
 
   constructor(private loginService: LoginService) { }
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isLoggedIn(): boolean{
-    return this.loginService.getToken() !== "" && this.loginService.getToken() !== undefined;
+    return this.loginService.getToken() != null;
   }
 
 }
