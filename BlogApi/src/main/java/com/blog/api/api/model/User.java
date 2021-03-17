@@ -32,6 +32,9 @@ public class User implements UserDetails {
     private String nachname;
 
     @Column
+    private byte[] profilBild;
+
+    @Column
     private String authorities;
 
     @Transient

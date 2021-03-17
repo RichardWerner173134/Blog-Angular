@@ -14,6 +14,7 @@ public class UserController {
     @RequestMapping(value ="/users", method = RequestMethod.GET)
     @ResponseBody
     public String getAllUsers(){
+
         return new Gson().toJson(userService.getAll());
     }
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
-import { RegistrationService } from '../services/registration.service';
+import { LoginService } from '../../services/login.service';
+import { RegistrationService } from '../../services/registration.service';
 
 @Component({
   selector: 'app-register',
@@ -25,9 +25,13 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private loginService: LoginService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
   }
   
+  addPicture(){
+    
+  }
+
   submit(){
 
     let username = this.register.value.username;

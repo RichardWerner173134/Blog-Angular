@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BeitragInterface, BeitragModel } from '../model/beitrag-model';
-import { BeitragService } from '../services/beitrag.service';
+import { BeitragModel } from '../../model/beitrag-model';
+import { BeitragService } from '../../services/beitrag.service';
 
 @Component({
   selector: 'app-beitraege',

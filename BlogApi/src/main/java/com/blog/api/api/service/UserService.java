@@ -30,7 +30,7 @@ public class UserService {
 
     public List<UserDAO> getAll() {
         return userRepository.findAll().stream()
-                .map(user -> new UserDAO(user.getUsername(), user.getVorname(), user.getNachname()))
+                .map(user -> new UserDAO(user.getUsername(), user.getVorname(), user.getNachname(), user.getProfilBild()))
                 .collect(Collectors.toList());
     }
 }

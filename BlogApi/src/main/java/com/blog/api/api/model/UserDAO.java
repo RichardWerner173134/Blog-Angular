@@ -13,4 +13,5 @@ public class UserDAO {
     private String username;
     private String vorname;
     private String nachname;
+    private byte[] profilBild;
 }

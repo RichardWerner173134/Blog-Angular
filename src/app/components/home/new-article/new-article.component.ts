@@ -36,7 +36,7 @@ export class NewArticleComponent implements OnInit {
 
   public submit(){
     let submitTitle = this.beitrag.value.title;
-    let submitAuthor = this.beitrag.value.author;
+    let submitAuthor = this.loginService.getUsername();
     let submitContent = this.beitrag.value.content;
 
     let submitBeitrag: BeitragModel = new BeitragModel(submitTitle, submitAuthor, submitContent);
