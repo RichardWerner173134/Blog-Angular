@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Byte } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,16 +10,16 @@ export class RegistrationService {
 
   constructor(private http: HttpClient) { }
 
-  public register(username: string, password: string, firstName: string, secondName: string): Observable<any> {
+  public register(username: string, password: string, firstName: string, secondName: string, img: File): Observable<any> {
     let url = 'http://localhost:8080/register';
-    let body = {
-      username: username,
-      password: password,
-      vorname: firstName,
-      nachname: secondName
-    };
-
-    return this.http.post(url, body);
+    let formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("vorname", firstName);
+    formData.append("nachname", secondName);
+    formData.append("profilbild", img);
+    
+    return this.http.post(url, formData);
   }
 
 }

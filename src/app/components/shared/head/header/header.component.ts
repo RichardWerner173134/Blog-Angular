@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  url: string;
 
   authenticated: boolean;
 
@@ -21,6 +22,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticated = this.isLoggedIn();
+    if(this.authenticated){
+      this.url = 'http://localhost:8080/users/' + this.loginService.getUsername() + '/img';
+    }
   }
 
   isLoggedIn(): boolean{

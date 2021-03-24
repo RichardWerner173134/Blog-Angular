@@ -3,6 +3,8 @@
     <div class="beitraege-wrapper">
         <app-beitrag 
         *ngFor="let beitrag of beitraege" 
-        [beitrag]='beitrag'></app-beitrag>
+        [beitrag]='beitrag'
+        [routerLink]='["/beiträge",beitrag.id]'
+        ></app-beitrag>
     </div>
 </div>

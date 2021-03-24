@@ -22,6 +22,8 @@ import { LogoutComponent } from './components/shared/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthorenComponent } from './components/authoren/authoren.component';
 import { MatTableModule } from '@angular/material/table';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { BeitragViewComponent } from './components/beitraege/beitrag-view/beitrag-view.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -30,6 +32,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'autoren', component: AuthorenComponent },
+  { path: 'beiträge/:beitragid', component: BeitragViewComponent },
   { path: '**', component: HomeComponent}
 ];
 
@@ -47,7 +50,8 @@ const appRoutes: Routes = [
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    AuthorenComponent
+    AuthorenComponent,
+    BeitragViewComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    NgxMatFileInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

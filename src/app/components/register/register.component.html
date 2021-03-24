@@ -26,6 +26,6 @@
         </mat-form-field>
         <br>
         <button mat-raised-button color="primary" class="submitButton" type="submit">Registrieren</button>
-        <button mat-button color="primary" (click)="addPicture()">Profilbild hinzufügen</button>
+        <input mat-raised-button type="file" (change)="onFileSelected($event)"> 
     </form>
 </div>

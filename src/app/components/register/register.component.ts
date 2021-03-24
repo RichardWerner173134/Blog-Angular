@@ -20,6 +20,9 @@ export class RegisterComponent implements OnInit {
     secondName : new FormControl('')
   });
 
+  selectedFile: File = null;
+
+
   constructor(private registrationService: RegistrationService,
     private matSnackBar: MatSnackBar,
     private router: Router,
@@ -28,8 +31,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(){
   }
   
-  addPicture(){
-    
+  onFileSelected(event){
+    this.selectedFile = <File>event.target.files[0];
   }
 
   submit(){
@@ -40,7 +43,7 @@ export class RegisterComponent implements OnInit {
     let secondName = this.register.value.secondName;
 
     this.registrationService
-      .register(username, password, firstName, secondName)
+      .register(username, password, firstName, secondName, this.selectedFile)
       .subscribe(
         response => {
           let snackbarRef = this.matSnackBar.open("Registrierung erfolgreich abgeschlossen", "OK", {
