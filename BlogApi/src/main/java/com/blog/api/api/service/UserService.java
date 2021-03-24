@@ -1,7 +1,7 @@
 package com.blog.api.api.service;
 
 import com.blog.api.api.model.User;
-import com.blog.api.api.model.UserDAO;
+import com.blog.api.api.model.dao.UserDAO;
 import com.blog.api.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +32,9 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(user -> new UserDAO(user.getUsername(), user.getVorname(), user.getNachname(), user.getProfilBild()))
                 .collect(Collectors.toList());
+    }
+
+    public User getZeroUser(){
+        return userRepository.findById("zero_user").get();
     }
 }

@@ -1,5 +1,5 @@
 export class AuthorModel {
-    username: string;
+    author: string;
     vorname: string;
     nachname: string;
 }
