@@ -1,11 +1,11 @@
 package com.blog.api.api.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -15,17 +15,22 @@ import javax.persistence.*;
 public class Beitrag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Expose
     private Long id;
 
+    @Expose
     @Column
     private String title;
 
+    @Expose
     @Column
     private String content;
 
-    @Column
-    private String author;
+    @ManyToOne
+    @Expose
+    @JoinColumn(name = "author_id")
+    private User username;
 
-    @Column
-    private int views;
+    @OneToMany(mappedBy = "beitrag")
+    private Set<BeitragView> views;
 }
