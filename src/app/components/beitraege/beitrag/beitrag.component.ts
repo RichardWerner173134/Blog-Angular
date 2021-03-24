@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BeitragModel } from 'src/app/model/beitrag-model';
+import { Router } from '@angular/router';
+import { IBeitragResponse } from 'src/app/model/beitrag-model';
 
 @Component({
   selector: 'app-beitrag',
@@ -9,9 +10,9 @@ import { BeitragModel } from 'src/app/model/beitrag-model';
 export class BeitragComponent implements OnInit {
 
   @Input()
-  beitrag: BeitragModel;
+  beitrag: IBeitragResponse;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {}

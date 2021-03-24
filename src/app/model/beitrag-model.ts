@@ -16,9 +16,17 @@ export class BeitragModel {
     }
 }
 
-export interface BeitragInterface{
+export interface IBeitragCreation{
     title: string,
     author: string,
     content: string,
     views: number
+}
+
+export interface IBeitragResponse{
+    id: number, 
+    title: string,
+    author: string,
+    content: string,
+    views: number  
 }

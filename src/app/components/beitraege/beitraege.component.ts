@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BeitragModel } from '../../model/beitrag-model';
+import { IBeitragResponse } from 'src/app/model/beitrag-model';
 import { BeitragService } from '../../services/beitrag.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { BeitragService } from '../../services/beitrag.service';
 })
 export class BeitraegeComponent implements OnInit {
 
-  beitraege: BeitragModel[] = [];
+  beitraege: IBeitragResponse[] = [];
 
   constructor(private beitragService: BeitragService) { }
 
@@ -21,3 +21,5 @@ export class BeitraegeComponent implements OnInit {
     );
   }
 }
+
+

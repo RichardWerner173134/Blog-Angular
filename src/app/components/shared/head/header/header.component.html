@@ -6,5 +6,10 @@
         <li *ngIf="authenticated">
             <app-logout></app-logout>
         </li>
+        <li *ngIf="authenticated">
+            <a [href]="url">
+                <img [src]="url" width=50 height=50>
+            </a>
+        </li>
     </ol>
 </div>

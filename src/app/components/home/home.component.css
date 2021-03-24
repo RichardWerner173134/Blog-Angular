@@ -7,3 +7,15 @@
 button{
     margin: 0.5rem;
 }
+
+.reg{
+    text-align: center;
+    border: 1px black solid;
+    border-radius: 1rem;
+    border-width: medium;
+    border-width: medium;
+    width: 500px;
+    margin: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

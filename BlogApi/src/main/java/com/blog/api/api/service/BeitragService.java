@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BeitragService {
@@ -20,5 +21,16 @@ public class BeitragService {
 
     public void addBeitrag(Beitrag beitrag) {
         beitragRepository.save(beitrag);
+    }
+
+    public void addView(Long beitragId) throws Exception {
+        Optional<Beitrag> byId = beitragRepository.findById(beitragId);
+        if(byId.isPresent()){
+            Beitrag beitrag = byId.get();
+            beitrag.setViews(beitrag.getViews() + 1);
+            beitragRepository.save(beitrag);
+        } else {
+            throw new Exception("Beitrag not found");
+        }
     }
 }

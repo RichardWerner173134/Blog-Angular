@@ -40,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/beitraege").permitAll()
                 .antMatchers("/addBeitrag").authenticated()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/users").permitAll();
+                .antMatchers("/users").permitAll()
+                .antMatchers("/beitraege/**").permitAll();
 
         http.headers().frameOptions().disable();
 
@@ -50,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
                 .antMatchers("/authenticate")
-                .antMatchers("/beitraege");
+                .antMatchers("/beitraege/**");
     }
 
     @Override

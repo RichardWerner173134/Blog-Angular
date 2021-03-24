@@ -1,17 +1,11 @@
 package com.blog.api.api.controller;
 
 import com.blog.api.api.model.Beitrag;
-import com.blog.api.api.security.AuthenticationRequest;
-import com.blog.api.api.security.JwtUtil;
-import com.blog.api.api.security.MyUserDetailsService;
+import com.blog.api.api.model.BeitragViewIncreaseRequest;
 import com.blog.api.api.service.BeitragService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +29,12 @@ public class BeitragController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @RequestMapping(value = "/beitraege/{beitragId}/addView", method = RequestMethod.POST)
+    public ResponseEntity addView(@PathVariable int beitragId, @RequestBody BeitragViewIncreaseRequest request) throws Exception {
+        beitragService.addView((long)beitragId);
+        return ResponseEntity.ok().build();
     }
 
 

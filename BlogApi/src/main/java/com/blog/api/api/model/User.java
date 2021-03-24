@@ -32,6 +32,7 @@ public class User implements UserDetails {
     private String nachname;
 
     @Column
+    @Lob
     private byte[] profilBild;
 
     @Column
