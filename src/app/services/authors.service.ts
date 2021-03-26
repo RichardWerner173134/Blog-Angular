@@ -11,7 +11,7 @@ export class AuthorsService {
   constructor(private http: HttpClient) { }
 
   public getAuthors(): Observable<AuthorModel[]>{
-    let url = 'http://localhost:8080/users';
+    let url = 'https://blog-rw.herokuapp.com/users';
     return this.http.get<AuthorModel[]>(url);
   }
 }

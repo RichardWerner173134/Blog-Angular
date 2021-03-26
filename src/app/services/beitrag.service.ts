@@ -13,8 +13,8 @@ export class BeitragService {
     private loginService: LoginService) { }
 
   addView(beitragId: number) {
-    let url = 'http://localhost:8080/beitraege/' + beitragId + '/addView';
-    let user = this.loginService.getUsername() !== null ? this.loginService.getUsername() : "not authenticated user";
+    let url = 'https://blog-rw.herokuapp.com/' + beitragId + '/addView';
+    let user = this.loginService.getUsername() !== null && this.loginService.getUsername() !== undefined ? this.loginService.getUsername() : "not authenticated user";
 
     let body = {
       date: new Date(),
@@ -29,7 +29,7 @@ export class BeitragService {
 
   public addBeitrag(beitrag: BeitragModel): Observable<any> {
 
-      const url: string = 'http://localhost:8080/addBeitrag'
+      const url: string = 'https://blog-rw.herokuapp.com/addBeitrag'
       const headers = { 
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.loginService.getToken()
@@ -43,7 +43,7 @@ export class BeitragService {
   }
 
   public getBeitraege(): Observable<IBeitragResponse[]>{
-    const url: string = 'http://localhost:8080/beitraege'
+    const url: string = 'https://blog-rw.herokuapp.com/beitraege'
     
     return this.http.get<IBeitragResponse[]>(
       url
