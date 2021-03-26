@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authenticated = this.isLoggedIn();
     if(this.authenticated){
-      this.url = 'http://localhost:8080/users/' + this.loginService.getUsername() + '/img';
+      this.url = 'https://blog-rw.herokuapp.com/users/' + this.loginService.getUsername() + '/img';
     }
   }
 

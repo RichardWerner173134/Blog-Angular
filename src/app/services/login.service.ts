@@ -14,7 +14,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public authenticate(username: string, password: string): Observable<string>{
-    let url = "http://localhost:8080/authenticate";
+    let url = "https://blog-rw.herokuapp.com/authenticate";
 
     let body = {
       username: username,

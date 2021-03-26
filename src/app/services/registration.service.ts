@@ -11,7 +11,7 @@ export class RegistrationService {
   constructor(private http: HttpClient) { }
 
   public register(username: string, password: string, firstName: string, secondName: string, img: File): Observable<any> {
-    let url = 'http://localhost:8080/register';
+    let url = 'https://blog-rw.herokuapp.com/register';
     let formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
