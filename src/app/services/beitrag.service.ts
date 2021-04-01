@@ -13,7 +13,7 @@ export class BeitragService {
     private loginService: LoginService) { }
 
   addView(beitragId: number) {
-    let url = 'https://blog-rw.herokuapp.com/' + beitragId + '/addView';
+    let url = 'https://blog-rw.herokuapp.com/beitraege/' + beitragId + '/addView';
     let user = this.loginService.getUsername() !== null && this.loginService.getUsername() !== undefined ? this.loginService.getUsername() : "not authenticated user";
 
     let body = {
