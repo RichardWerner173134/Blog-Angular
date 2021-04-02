@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { IAppstate } from 'src/app/store/state';
 import { LoginService } from '../../services/login.service';
 import { RegistrationService } from '../../services/registration.service';
 
@@ -23,7 +25,9 @@ export class RegisterComponent implements OnInit {
   selectedFile: File = null;
 
 
-  constructor(private registrationService: RegistrationService,
+  constructor(
+    private store: Store<{appState: IAppstate}>,
+    private registrationService: RegistrationService,
     private matSnackBar: MatSnackBar,
     private router: Router,
     private loginService: LoginService) { }
@@ -55,8 +59,7 @@ export class RegisterComponent implements OnInit {
                 .authenticate(username, password)
                 .subscribe(
                   response => {
-                    this.loginService.setToken(response);
-                    this.loginService.setUsername(username);
+                    this.loginService.login(response, username);
                     this.router.navigate(
                       ['/home']
                     );

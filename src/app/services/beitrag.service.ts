@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ComponentFactoryResolver, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IBeitragCreation, BeitragModel, IBeitragResponse } from '../model/beitrag-model';
+import { FetchAction } from '../store/actions';
+import { IAppstate } from '../store/state';
+import { AppstateService } from './appstate.service';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -9,18 +13,24 @@ import { LoginService } from './login.service';
 })
 export class BeitragService {
 
-  constructor(private http: HttpClient,
-    private loginService: LoginService) { }
+  private appstateService: AppstateService;
+
+  constructor(
+    private http: HttpClient){ }
+
+    setAppStateService(appstateService: AppstateService) {
+      this.appstateService = appstateService;
+    }
 
   addView(beitragId: number) {
     let url = 'https://blog-rw.herokuapp.com/beitraege/' + beitragId + '/addView';
-    let user = this.loginService.getUsername() !== null && this.loginService.getUsername() !== undefined ? this.loginService.getUsername() : "not authenticated user";
+    let username: string = this.appstateService.getUsernameFromStore() != "" ? this.appstateService.getUsernameFromStore() : "not authenticated user";
 
     let body = {
       date: new Date(),
-      user: user
+      user: username
     };
-
+        
     this.http.post(
       url,
       body
@@ -29,22 +39,25 @@ export class BeitragService {
 
   public addBeitrag(beitrag: BeitragModel): Observable<any> {
 
-      const url: string = 'https://blog-rw.herokuapp.com/addBeitrag'
-      const headers = { 
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.loginService.getToken()
-      }  
+    let token: string = this.appstateService.getTokenFromStore();
 
-      return this.http.post<IBeitragCreation>(
-        url, 
-        JSON.stringify(beitrag), 
-        {"headers": headers}
-      );
+    const url: string = 'https://blog-rw.herokuapp.com/addBeitrag'
+    const headers = { 
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }  
+
+      
+    return this.http.post<IBeitragCreation>(
+      url, 
+      JSON.stringify(beitrag), 
+      {"headers": headers}
+    );
+    
   }
 
-  public getBeitraege(): Observable<IBeitragResponse[]>{
-    const url: string = 'https://blog-rw.herokuapp.com/beitraege'
-    
+  public fetchBeitraege(): Observable<IBeitragResponse[]>{
+    const url: string = 'https://blog-rw.herokuapp.com/beitraege';
     return this.http.get<IBeitragResponse[]>(
       url
     );

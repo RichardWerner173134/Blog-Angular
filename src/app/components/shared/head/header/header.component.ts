@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppstateService } from 'src/app/services/appstate.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -18,17 +19,21 @@ export class HeaderComponent implements OnInit {
     'Autoren'
   ];
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private appstateService: AppstateService,
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.authenticated = this.isLoggedIn();
-    if(this.authenticated){
-      this.url = 'https://blog-rw.herokuapp.com/users/' + this.loginService.getUsername() + '/img';
-    }
-  }
-
-  isLoggedIn(): boolean{
-    return this.loginService.getToken() != null;
+    this.appstateService.getAppState().subscribe(
+      data => {
+        if(data.user != "" && data.token != ""){
+          this.authenticated = true;
+          this.url = 'https://blog-rw.herokuapp.com/users/' + data.user + '/img';
+        } else {
+          this.authenticated = false;
+        }
+      }
+    );
   }
 
 }
