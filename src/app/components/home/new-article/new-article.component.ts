@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms'
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BeitragModel } from 'src/app/model/beitrag-model';
+import { AppstateService } from 'src/app/services/appstate.service';
 import { BeitragService } from 'src/app/services/beitrag.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -23,13 +24,17 @@ export class NewArticleComponent implements OnInit {
   });
 
   constructor(
+    private appstateService: AppstateService,
     private beitragService: BeitragService,
-    private loginService: LoginService,
     private snackbar: MatSnackBar,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.username = this.loginService.getUsername();
+    this.appstateService.getAppState().subscribe(
+      data => {
+        this.username = data.user;
+      }
+    );
     document.getElementById("form").style.minWidth=(window.innerWidth * 0.8).toString() + "px";
     this.beitrag.controls['author'].setValue(this.username);
     this.beitrag.controls['author'].disable();
@@ -37,7 +42,7 @@ export class NewArticleComponent implements OnInit {
 
   public submit(){
     let submitTitle = this.beitrag.value.title;
-    let submitAuthor = this.loginService.getUsername();
+    let submitAuthor = this.username;
     let submitContent = this.beitrag.value.content;
 
     let submitBeitrag: BeitragModel = new BeitragModel(submitTitle, submitAuthor, submitContent);

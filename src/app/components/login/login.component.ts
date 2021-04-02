@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { IAppstate } from 'src/app/store/state';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
     password : new FormControl('')
   });
 
-  constructor(private loginService: LoginService,
+  constructor(
+    private store: Store<{appState: IAppstate}>,
+    private loginService: LoginService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -29,8 +33,7 @@ export class LoginComponent implements OnInit {
       .authenticate(username, password)
       .subscribe(
         response => {
-          this.loginService.setToken(response);
-          this.loginService.setUsername(username);
+          this.loginService.login(username, response);
           this.router.navigate(
             ['/home']
           );

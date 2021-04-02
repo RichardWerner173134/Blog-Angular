@@ -24,6 +24,11 @@ import { AuthorenComponent } from './components/authoren/authoren.component';
 import { MatTableModule } from '@angular/material/table';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { BeitragViewComponent } from './components/beitraege/beitrag-view/beitrag-view.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
+import { TestComponent } from './test/test.component';
+import { reducer } from './store/reducer';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -33,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'autoren', component: AuthorenComponent },
   { path: 'beiträge/:beitragid', component: BeitragViewComponent },
+  { path: 'test', component: TestComponent },
   { path: '**', component: HomeComponent}
 ];
 
@@ -51,13 +57,16 @@ const appRoutes: Routes = [
     LogoutComponent,
     RegisterComponent,
     AuthorenComponent,
-    BeitragViewComponent
+    BeitragViewComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(
       appRoutes
     ),
+    StoreModule.forRoot({ appState: reducer }),
+    StoreDevtoolsModule.instrument( {maxAge: 25} ),
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -66,7 +75,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatSnackBarModule,
     MatTableModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

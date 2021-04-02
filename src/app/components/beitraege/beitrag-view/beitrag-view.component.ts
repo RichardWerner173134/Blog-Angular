@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IBeitragResponse } from 'src/app/model/beitrag-model';
+import { AppstateService } from 'src/app/services/appstate.service';
 import { BeitragService } from 'src/app/services/beitrag.service';
 
 @Component({
@@ -19,17 +20,15 @@ export class BeitragViewComponent implements OnInit {
 
   constructor(    
     private route: ActivatedRoute,
+    private appstateService: AppstateService,
     private beitragService: BeitragService
   ) { }
 
   ngOnInit(): void {
     let beitragId = Number(this.route.snapshot.paramMap.get('beitragid'));
-    this.beitragService.getBeitraege().subscribe(
-      response => {
-        this.beitrag = response.find(b => b.id == beitragId);
-      },
-      error => {
-        console.log(error);
+    this.appstateService.getAppState().subscribe(
+      data => {
+        this.beitrag = data.beitraege.find(b => b.id == beitragId);
       }
     );
 

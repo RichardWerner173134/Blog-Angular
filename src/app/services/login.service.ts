@@ -1,17 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Byte } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { LoginAction, LogoutAction } from '../store/actions';
+import { IAppstate } from '../store/state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  
-  private token: string;
-  private username: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private store: Store< { appState: IAppstate } >
+    ) { }
 
   public authenticate(username: string, password: string): Observable<string>{
     let url = "https://blog-rw.herokuapp.com/authenticate";
@@ -24,25 +27,17 @@ export class LoginService {
     return this.http.post<string>(url, body);
   }
 
-  public setToken(token: string) {
-    this.token = token;
-  }
-
-  public getToken(): string {
-    return this.token;
-  }
-
-  public getUsername(): string {
-    return this.username;
-  }
-
-  public setUsername(username: string) {
-    this.username = username;
-  }
-
   public logout() {
-    this.token = null;
-    this.username = null;
+    this.store.dispatch(LogoutAction());
+  }
+
+  public login(user: string, token: string){
+    this.store.dispatch(LoginAction({
+      payload: {
+        user: user,
+        token: token
+      }
+    }));
   }
 
 }
